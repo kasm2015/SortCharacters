@@ -2,42 +2,26 @@ package com.example.sortcharacter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.util.StringUtils;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.logging.Logger;
 
 @SpringBootApplication
 public class SortCharacterApplication {
 
+    private static Logger logger = Logger.getLogger("SortCharacter");
+
     public static void main(String[] args) {
         SpringApplication.run(SortCharacterApplication.class, args);
         //Read a paragraph from a file located in resource folder
-        List<String> paragraphs = SortUtil.readFile();
+        List<String> paragraphs = SortUtil.readFile(Constants.FILE_PATH);
 
-        if (!paragraphs.isEmpty()) {
-            String paragraphString = paragraphs.toString();
-            paragraphString = paragraphString.replaceAll(Constants.REMOVE_SPL_CHARACTERS, Constants.EMPTY);
-            System.out.println("Para String : " +paragraphString);
-            char[] charArray = paragraphString.trim().toLowerCase().toCharArray();
-            Arrays.sort(charArray);
-            System.out.println("Sorted string " + String.valueOf(charArray));
+        //Pass paragraph list to sort characters read from a file
+        if(!paragraphs.isEmpty()) {
+            SortUtil.sortCharacters(paragraphs);
         } else {
-            System.out.println("File is either empty or no characters found");
+            logger.info("No Paragraphs found in a file");
         }
     }
-
-
-
-
-
 
 }
