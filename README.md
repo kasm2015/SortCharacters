@@ -1,6 +1,10 @@
 # This project is created for sorting characters 
 # Paragraphs are mentioned in a file
 
+# Clone this project in your local machine with below command
+
+# git clone https://github.com/kasm2015/SortCharacters.git
+
 # To Execute this particular program , 
  # STEP 1. Open this Maven project in any of the IDE ( Eclipse or Intellij IDEA) with Java 8 installed
 
